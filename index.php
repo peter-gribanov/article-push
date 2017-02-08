@@ -5,7 +5,7 @@
   <title>Test push notification</title>
 </head>
 <body>
-  <input name="token" id="token">
+<button type="button" id="send">Send notification</button>
 </body>
 </html>
 <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
