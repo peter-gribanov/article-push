@@ -13,7 +13,7 @@ messaging.requestPermission()
                 console.log(currentToken);
 
                 if (currentToken) {
-                  // send token to the server if is isn't sended before
+                  // send token to the server if is isn't sent before
                   send('/register.php', {token: currentToken});
                 } else {
                     console.warn('No Instance ID token available. Request permission to generate one.');
@@ -28,6 +28,14 @@ messaging.requestPermission()
     .catch(function(err) {
         console.warn('Unable to get permission to notify.', err);
     });
+
+document.getElementById('send').onclick = function() {
+  if (isTokenSentToServer()) {
+    send('/sent.php', {});
+  } else {
+    console.error('Token not sent to server.');
+  }
+};
 
 function send(url, data) {
   var body = '';
