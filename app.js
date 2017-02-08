@@ -1,5 +1,6 @@
+
 firebase.initializeApp({
-  messagingSenderId: "448358493027"
+    messagingSenderId: '448358493027'
 });
 
 var messaging = firebase.messaging();
@@ -13,8 +14,8 @@ messaging.requestPermission()
                 console.log(currentToken);
 
                 if (currentToken) {
-                  // send token to the server if is isn't sent before
-                  send('/register.php', {token: currentToken});
+                    // send token to the server if is isn't sent before
+                    sendTokenToServer(currentToken);
                 } else {
                     console.warn('No Instance ID token available. Request permission to generate one.');
                     setTokenSentToServer(false);
@@ -30,44 +31,44 @@ messaging.requestPermission()
     });
 
 document.getElementById('send').onclick = function() {
-  if (isTokenSentToServer()) {
-    send('/sent.php', {});
-  } else {
-    console.error('Token not sent to server.');
-  }
+    if (isTokenSentToServer()) {
+        send('/sent.php', {});
+    } else {
+        console.error('Token not sent to server.');
+    }
 };
 
 function send(url, data) {
-  var body = '';
-  for (var property in data) {
-    if (data.hasOwnProperty(property)) {
-      if (body != '') {
-        body += '&';
-      }
-      body += property + '=' + encodeURIComponent(data[property]);
+    var body = '';
+    for (var property in data) {
+        if (data.hasOwnProperty(property)) {
+            if (body != '') {
+                body += '&';
+            }
+            body += property + '=' + encodeURIComponent(data[property]);
+        }
     }
-  }
 
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', url, true);
-  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-  xhr.send(body);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send(body);
 }
 
 function sendTokenToServer(currentToken) {
-  if (!isTokenSentToServer()) {
-    console.log('Sending token to server...');
-    send('/register.php', {token: currentToken});
-    setTokenSentToServer(true);
-  } else {
-    console.log('Token already sent to server so won\'t send it again unless it changes');
-  }
+    if (!isTokenSentToServer()) {
+        console.log('Sending token to server...');
+        send('/register.php', {token: currentToken});
+        setTokenSentToServer(true);
+    } else {
+        console.log('Token already sent to server so won\'t send it again unless it changes');
+    }
 }
 
 function isTokenSentToServer() {
-  return window.localStorage.getItem('sentToServer') == 1;
+    return window.localStorage.getItem('sentToServer') == 1;
 }
 
 function setTokenSentToServer(sent) {
-  window.localStorage.setItem('sentToServer', sent ? 1 : 0);
+    window.localStorage.setItem('sentToServer', sent ? 1 : 0);
 }

@@ -5,4 +5,4 @@ firebase.initializeApp({
     'messagingSenderId': '448358493027'
 });
 
-const messaging = firebase.messaging();
+firebase.messaging();
