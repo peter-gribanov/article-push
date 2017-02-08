@@ -11,25 +11,55 @@ messaging.requestPermission()
         messaging.getToken()
             .then(function(currentToken) {
                 console.log(currentToken);
-                document.getElementById('token').value = currentToken;
 
                 if (currentToken) {
-//                        sendTokenToServer(currentToken);
-//                        updateUIForPushEnabled(currentToken);
+                  // send token to the server if is isn't sended before
+                  send('/register.php', {token: currentToken});
                 } else {
-                    // Show permission request.
                     console.warn('No Instance ID token available. Request permission to generate one.');
-                    // Show permission UI.
-//                        updateUIForPushPermissionRequired();
-//                        setTokenSentToServer(false);
+                    setTokenSentToServer(false);
                 }
             })
             .catch(function(err) {
                 console.warn('An error occurred while retrieving token. ', err);
-//                    showToken('Error retrieving Instance ID token. ', err);
-//                    setTokenSentToServer(false);
+                setTokenSentToServer(false);
             });
     })
     .catch(function(err) {
         console.warn('Unable to get permission to notify.', err);
     });
+
+function send(url, data) {
+  var body = '';
+  for (var property in data) {
+    if (data.hasOwnProperty(property)) {
+      if (body != '') {
+        body += '&';
+      }
+      body += property + '=' + encodeURIComponent(data[property]);
+    }
+  }
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', url, true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+  xhr.send(body);
+}
+
+function sendTokenToServer(currentToken) {
+  if (!isTokenSentToServer()) {
+    console.log('Sending token to server...');
+    send('/register.php', {token: currentToken});
+    setTokenSentToServer(true);
+  } else {
+    console.log('Token already sent to server so won\'t send it again unless it changes');
+  }
+}
+
+function isTokenSentToServer() {
+  return window.localStorage.getItem('sentToServer') == 1;
+}
+
+function setTokenSentToServer(sent) {
+  window.localStorage.setItem('sentToServer', sent ? 1 : 0);
+}
