@@ -1,8 +1,9 @@
 <?php
 session_start();
+header('Content-Type: application/json');
 
 $url = 'https://fcm.googleapis.com/fcm/send';
-$YOUR_API_KEY = 'AIzaSyDsgrxryBjQrS38vdxuDk_3RRJtuOGbU1c';
+$YOUR_API_KEY = 'AIzaSyCpwY3CCP-snMnfaktCecEp_x5zLFDLmDk';
 
 $fields = [
     'to' => $_SESSION['token'],
@@ -27,6 +28,5 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
 
-header('Content-Type: application/json');
 echo curl_exec($ch);
 curl_close($ch);
