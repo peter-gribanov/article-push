@@ -56,13 +56,14 @@ function send(url, data) {
 }
 
 function sendTokenToServer(currentToken) {
-    if (!isTokenSentToServer()) {
+    // if (!isTokenSentToServer()) {
+        // always sent token
         console.log('Sending token to server...');
         send('/register.php', {token: currentToken});
         setTokenSentToServer(true);
-    } else {
-        console.log('Token already sent to server so won\'t send it again unless it changes');
-    }
+    // } else {
+    //     console.log('Token already sent to server so won\'t send it again unless it changes');
+    // }
 }
 
 function isTokenSentToServer() {
