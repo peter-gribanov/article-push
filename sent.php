@@ -20,6 +20,8 @@ $headers = [
     'Content-Type: application/json',
 ];
 
+//exit(json_encode([$headers, $fields]));
+
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
