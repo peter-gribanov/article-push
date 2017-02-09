@@ -14,19 +14,17 @@ $fields = [
         'click_action' => 'http://eralash.ru/',
     ],
 ];
-$fields = json_encode($fields);
 
 $headers = [
     'Authorization: key=' . $YOUR_API_KEY,
     'Content-Type: application/json',
 ];
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, true);
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
 
 echo curl_exec($ch);
 curl_close($ch);
