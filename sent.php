@@ -16,8 +16,8 @@ $fields = [
 ];
 
 $headers = [
-    'Authorization: key=' . $YOUR_API_KEY,
     'Content-Type: application/json',
+    'Authorization: key=' . $YOUR_API_KEY,
 ];
 
 //exit(json_encode([$headers, $fields]));
