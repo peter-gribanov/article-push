@@ -9,7 +9,7 @@ $fields = [
     'to' => $_SESSION['token'],
     'notification' => [
         'title' => 'Ералаш',
-        'body' => sprintf('Ваша любимая передача начинается в %s.', date('H:i')),
+        'body' => sprintf('Начало в %s.', date('H:i')),
         'icon' => 'https://eralash.ru.rsz.io/sites/all/themes/eralash_v5/logo.png?width=40&height=40',
         'click_action' => 'http://eralash.ru/',
     ],
