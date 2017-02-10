@@ -32,32 +32,37 @@ messaging.requestPermission()
 
 document.getElementById('send').onclick = function() {
     if (isTokenSentToServer()) {
-        send('/sent.php', {});
+        send('/send.php');
     } else {
         console.error('Token not sent to server.');
     }
 };
 
 function send(url, data) {
-    var body = '';
-    for (var property in data) {
-        if (data.hasOwnProperty(property)) {
-            if (body != '') {
-                body += '&';
-            }
-            body += property + '=' + encodeURIComponent(data[property]);
-        }
-    }
-
     var xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send(body);
+
+    if (data) {
+        var params = '';
+        for (var property in data) {
+            if (data.hasOwnProperty(property)) {
+                if (params != '') {
+                    params += '&';
+                }
+                params += property + '=' + encodeURIComponent(data[property]);
+            }
+        }
+
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send(params);
+    } else {
+        xhr.send(null);
+    }
 }
 
 function sendTokenToServer(currentToken) {
+    // always send token for fix session expire
     // if (!isTokenSentToServer()) {
-        // always sent token
         console.log('Sending token to server...');
         send('/register.php', {token: currentToken});
         setTokenSentToServer(true);
