@@ -6,6 +6,32 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 
 session_start();
 
+/*
+ * Error responses
+{
+    "multicast_id": 7.5633903902171e+18,
+    "success": 0,
+    "failure": 1,
+    "canonical_ids": 0,
+    "results": [
+        {
+            "error": "NotRegistered"
+        }
+    ]
+}
+{
+    "multicast_id": 7.7873899680195e+18,
+    "success": 0,
+    "failure": 1,
+    "canonical_ids": 0,
+    "results": [
+        {
+            "error": "InvalidRegistration"
+        }
+    ]
+}
+*/
+
 $url = 'https://fcm.googleapis.com/fcm/send';
 $YOUR_API_KEY = 'AIzaSyCpwY3CCP-snMnfaktCecEp_x5zLFDLmDk';
 
