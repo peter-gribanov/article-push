@@ -30,14 +30,6 @@ messaging.requestPermission()
         console.warn('Unable to get permission to notify.', err);
     });
 
-document.getElementById('send').onclick = function() {
-    if (isTokenSentToServer()) {
-        send('/send.php');
-    } else {
-        console.error('Token not sent to server.');
-    }
-};
-
 function send(url, data) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
@@ -62,13 +54,13 @@ function send(url, data) {
 
 function sendTokenToServer(currentToken) {
     // always send token for fix session expire
-    // if (!isTokenSentToServer()) {
+    if (true || !isTokenSentToServer()) {
         console.log('Sending token to server...');
         send('/register.php', {token: currentToken});
         setTokenSentToServer(true);
-    // } else {
-    //     console.log('Token already sent to server so won\'t send it again unless it changes');
-    // }
+    } else {
+        console.log('Token already sent to server so won\'t send it again unless it changes');
+    }
 }
 
 function isTokenSentToServer() {
