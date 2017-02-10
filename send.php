@@ -31,12 +31,15 @@ curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 curl_setopt($ch, CURLOPT_HEADER, true);
 
 $response = curl_exec($ch);
+$response_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 $response_headers_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
 $response_headers = substr($response, 0, $response_headers_size);
 $response_body = substr($response, $response_headers_size);
 curl_close($ch);
 
-$response_body = ($array = @json_decode($response_body)) ? json_encode($array, JSON_PRETTY_PRINT) : $response_body;
+if ($response_code == 200 && ($data = @json_decode($response_body))) {
+    $response_body = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -51,9 +54,9 @@ headers:
 body:
 <pre><code><?=json_encode($request_body, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)?></pre>
 <br>
-<h3>Response</h3>
+<h3>Response (<?=$response_code?>)</h3>
 headers:
-<pre><code><?=implode(PHP_EOL, $response_headers)?></pre>
+<pre><code><?=$response_headers?></pre>
 body:
 <pre><code><?=$response_body?></pre>
 <br>
