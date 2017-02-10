@@ -23,7 +23,7 @@ $fields = json_encode($request_body, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNI
 $request_headers = [
     'Content-Type: application/json',
     'Authorization: key=' . $YOUR_API_KEY,
-    'Content-Length: ' . mb_strlen($fields, 'UTF8'),
+    'Content-Length: ' . strlen($fields),
 ];
 
 $ch = curl_init();
