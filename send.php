@@ -55,17 +55,29 @@ if ($response_code == 200 && ($data = @json_decode($response_body))) {
     <script src="/app.js"></script>
 </head>
 <body>
-<h3>Request</h3>
-<strong>Headers:</strong>
-<pre><code><?=implode(PHP_EOL, $request_headers)?></code></pre>
-<strong>Body:</strong>
-<pre><code><?=json_encode($request_body, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)?></code></pre>
+<section>
+    <header>
+        <h3>Request</h3>
+    </header>
+    <article>
+        <strong>Headers:</strong>
+        <pre><code><?=implode(PHP_EOL, $request_headers)?></code></pre>
+        <strong>Body:</strong>
+        <pre><code><?=json_encode($request_body, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)?></code></pre>
+    </article>
+</section>
 <br>
-<h3>Response (<?=$response_code?>)</h3>
-<strong>Headers:</strong>
-<pre><code><?=$response_headers?></code></pre>
-<strong>Body:</strong>
-<pre><code><?=$response_body?></code></pre>
+<section>
+    <header>
+        <h3>Response (<?=$response_code?>)</h3>
+    </header>
+    <article>
+        <strong>Headers:</strong>
+        <pre><code><?=$response_headers?></code></pre>
+        <strong>Body:</strong>
+        <pre><code><?=$response_body?></code></pre>
+    </article>
+</section>
 <br>
 <a href="/index.html">< Go back</a>
 </body>
