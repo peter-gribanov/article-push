@@ -49,15 +49,15 @@ if ($response_code == 200 && ($data = @json_decode($response_body))) {
 </head>
 <body>
 <h3>Request</h3>
-headers:
+<strong>Headers:</strong>
 <pre><code><?=implode(PHP_EOL, $request_headers)?></code></pre>
-body:
+<strong>Body:</strong>
 <pre><code><?=json_encode($request_body, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)?></code></pre>
 <br>
 <h3>Response (<?=$response_code?>)</h3>
-headers:
+<strong>Headers:</strong>
 <pre><code><?=$response_headers?></code></pre>
-body:
+<strong>Body:</strong>
 <pre><code><?=$response_body?></code></pre>
 <br>
 <a href="/index.html">< Go back</a>
