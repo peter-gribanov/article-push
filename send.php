@@ -51,6 +51,8 @@ if ($response_code == 200 && ($data = @json_decode($response_body))) {
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Test push notification</title>
+    <script src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
+    <script src="/app.js"></script>
 </head>
 <body>
 <h3>Request</h3>
@@ -68,5 +70,3 @@ if ($response_code == 200 && ($data = @json_decode($response_body))) {
 <a href="/index.html">< Go back</a>
 </body>
 </html>
-<script src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
-<script src="/app.js"></script>
