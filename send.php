@@ -61,6 +61,11 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 //curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+//curl_setopt($ch, CURLOPT_COOKIESESSION, true);
+curl_setopt($ch, CURLOPT_FORBID_REUSE, true);
+curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+//curl_setopt($ch, CURLOPT_DNS_CACHE_TIMEOUT, 0);
+//curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
 curl_setopt($ch, CURLOPT_HEADER, true);
 
 $response = curl_exec($ch);
