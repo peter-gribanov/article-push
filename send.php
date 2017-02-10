@@ -37,7 +37,7 @@ $YOUR_API_KEY = 'AIzaSyCpwY3CCP-snMnfaktCecEp_x5zLFDLmDk';
 
 $request_body = [
     'to' => $_SESSION['token'],
-    'notification' => [
+    'data' => [
         'title' => 'Ералаш',
         'body' => sprintf('Начало в %s.', date('H:i')),
         'icon' => 'https://eralash.ru.rsz.io/sites/all/themes/eralash_v5/logo.png?width=40&height=40',
