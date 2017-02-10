@@ -1,4 +1,9 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    header('Location: /', 302);
+    exit;
+}
+
 session_start();
 
 $url = 'https://fcm.googleapis.com/fcm/send';
