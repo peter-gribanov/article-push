@@ -18,17 +18,19 @@ $request_body = [
         'click_action' => 'http://eralash.ru/',
     ],
 ];
+$fields = json_encode($request_body, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 
 $request_headers = [
     'Content-Type: application/json',
     'Authorization: key=' . $YOUR_API_KEY,
+    'Content-Length: ' . mb_strlen($fields, 'UTF8'),
 ];
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 curl_setopt($ch, CURLOPT_HTTPHEADER, $request_headers);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($request_body, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
