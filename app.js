@@ -5,6 +5,14 @@ firebase.initializeApp({
 
 var messaging = firebase.messaging();
 
+document.getElementById('send').onclick = function() {
+    if (isTokenSentToServer()) {
+        send('/send.php');
+    } else {
+        console.error('Token not sent to server.');
+    }
+};
+
 messaging.onMessage(function(payload) {
     console.log('Message received. ', payload);
     new Notification(payload.notification.title, payload.notification);
