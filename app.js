@@ -15,7 +15,7 @@ document.getElementById('send').onclick = function() {
 
 messaging.onMessage(function(payload) {
     console.log('Message received. ', payload);
-    new Notification(payload.notification.title, payload.notification);
+    new Notification(payload.data.title, payload.data);
 });
 
 messaging.requestPermission()
