@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-    header('Location: /', 302);
+    header('HTTP/1.1 400 Bad Request');
     exit;
 }
 
