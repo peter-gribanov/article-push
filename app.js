@@ -5,6 +5,11 @@ firebase.initializeApp({
 
 var messaging = firebase.messaging();
 
+messaging.onMessage(function(payload) {
+    console.log('Message received. ', payload);
+    new Notification(payload.notification.title, payload.notification);
+});
+
 messaging.requestPermission()
     .then(function() {
         // Get Instance ID token. Initially this makes a network call, once retrieved
