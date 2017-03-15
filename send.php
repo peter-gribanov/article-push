@@ -33,7 +33,7 @@ session_start();
 */
 
 $url = 'https://fcm.googleapis.com/fcm/send';
-$YOUR_API_KEY = 'AIzaSyCpwY3CCP-snMnfaktCecEp_x5zLFDLmDk';
+$YOUR_API_KEY = 'AAAAaGQ_q2M:APA91bGCEOduj8HM6gP24w2LEnesqM2zkL_qx2PJUSBjjeGSdJhCrDoJf_WbT7wpQZrynHlESAoZ1VHX9Nro6W_tqpJ3Aw-A292SVe_4Ho7tJQCQxSezDCoJsnqXjoaouMYIwr34vZTs';
 
 $request_body = [
     'to' => $_SESSION['token'],
@@ -47,7 +47,6 @@ $request_body = [
 $request_headers = [
     'Content-Type: application/json',
     'Authorization: key=' . $YOUR_API_KEY,
-    'Content-Length: ' . strlen($fields),
 ];
 
 $fields = json_encode($request_body);
@@ -59,8 +58,6 @@ curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 curl_setopt($ch, CURLOPT_HTTPHEADER, $request_headers);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 echo curl_exec($ch);
 curl_close($ch);
