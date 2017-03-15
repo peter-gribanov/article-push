@@ -33,7 +33,7 @@ session_start();
 */
 
 $url = 'https://fcm.googleapis.com/fcm/send';
-$YOUR_API_KEY = 'AAAAaGQ_q2M:APA91bGCEOduj8HM6gP24w2LEnesqM2zkL_qx2PJUSBjjeGSdJhCrDoJf_WbT7wpQZrynHlESAoZ1VHX9Nro6W_tqpJ3Aw-A292SVe_4Ho7tJQCQxSezDCoJsnqXjoaouMYIwr34vZTs';
+$YOUR_API_KEY = 'AIzaSyCpwY3CCP-snMnfaktCecEp_x5zLFDLmDk';
 
 $request_body = [
     'to' => $_SESSION['token'],
